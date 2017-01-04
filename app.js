@@ -1,30 +1,32 @@
 var express = require ('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var app = express ();
+//aanmaken van een webserver
+var app = express();
 
 //aanmaken datastore
 
-var LocatieSchema=require('./models/location.js');
+var DroneSchema=require('./models/location.js');
 
 
 
 //connect to mongoose
-mongoose.connect('mongodb://localhost:27017/prober');
+mongoose.connect('mongodb://localhost/prober');
 var db = mongoose.connection;
 
 app.get('/',function(req,res){
-	res.send('please use prober/drones');
+	res.send('please use /drone');
 });
 
-app.get('/locatie',function(req,res){
-	LocatieSchema.getLocation(function(err,location){
+app.get('/drone',function(req,res){
+	DroneSchema.getDrones(function(err,drones){
 		if(err){
 			throw err;
 		}
-		res.send(location);
+		res.send(drones);
 	});
 });
+
 
 app.listen(3030);
 console.log("Server running on 3030");

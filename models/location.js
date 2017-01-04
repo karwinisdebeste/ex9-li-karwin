@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 //Drone Schema
 //voor de applicatie
-var LocatieSchema = mongoose.Schema({
+var droneSchema = mongoose.Schema({
 	name:{
 		type:String,
 		required:true
@@ -21,13 +21,13 @@ var LocatieSchema = mongoose.Schema({
 		required:true
 	})	
 });
-
-var LocatieSchema = module.exports = mongoose.model('location',LocatieSchema); // exports making it accessable from outside
+//models name = collection name
+var drones = module.exports = mongoose.model('drones',droneSchema); // exports making it accessable from outside
 
 //get location
 module.exports = {
 	 //callback via de route file
-	getLocation : function(callback){
+	getDrones : function(callback){
 	drones.find(callback);
 	}
 };
