@@ -58,6 +58,23 @@ app.post('/location',function(req,res){
 
 	});
 });
+app.put("/locaties/:id", function(req, res) {
+    var locatie = req.body;
+    var errors = validationlocaties.fieldsNotEmpty(locatie, "id", "naam_drone", "mac_address_drone", "naam_locatie", "beschrijving");
+    if (errors) {
+        res.status(400).send({
+            msg: "Volgende velden zijn verplicht of fout: " + errors.concat()
+        });
+    } else {
+        dalLocatie.updateDrones(req.params.id, locatie, function(err, location) {
+            if (err) {
+                throw err;
+            } else {
+                res.send(locatie);
+            }
+        });
+    }
+});
 // aanwezigheden
 app.get("/aanwezigheden", function(req, res) {
     dalAanwezigheden.allAanwezigheden(function(err, aanwezig) {
@@ -134,7 +151,23 @@ app.post("/users", function(req, res) {
         });
     }
 });
-
+app.put("/users/:id", function(req, res) {
+    var user = req.body;
+    var errors = usersValudation.fieldsNotEmpty(user, "id","persoon_naam","job_omschrijving");
+    if (errors) {
+        res.status(400).send({
+            msg: "Volgende velden zijn verplicht of fout: " + errors.concat()
+        });
+    } else {
+        dalLocatie.updateDrones(req.params.id, user, function(err, user) {
+            if (err) {
+                throw err;
+            } else {
+                res.send(user);
+            }
+        });
+    }
+});
 
 
 app.listen(3030);

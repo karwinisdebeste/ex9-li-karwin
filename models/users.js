@@ -53,5 +53,5 @@ module.exports = {
     	}
     	Users.findOneAndUpdate({naam_drone:id},omschrijving,callback); //update
     }
-
+   
 };
