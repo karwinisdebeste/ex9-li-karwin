@@ -32,10 +32,10 @@ var droneSchema = new Schema({
 //get location
 
 // exports making it accessable from outside
-var Drone = module.exports = mongoose.model('Locatie', droneSchema);
+var Drone = module.exports = mongoose.model('locatie', droneSchema);
 module.exports = {
     addDrones: function (locatie, callback) {
-        Drone.create(locatie, callback);
+        Drone.create(locatie, callback); //create -> POST
     },
 
     allDrones : function(callback) {
@@ -46,6 +46,6 @@ module.exports = {
         Drone.find({naam_drone:id}, callback);
     },
     updateDrones: function (id, locatie, callback) {
-        Drone.findOneAndUpdate({naam_drone:id}, locatie , callback);
+        Drone.findOneAndUpdate({naam_drone:id}, locatie , callback); //update = PUT
     }
 };
